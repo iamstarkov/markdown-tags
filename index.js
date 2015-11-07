@@ -13,8 +13,10 @@ const tagsParagraph = R.pipe(
   R.filter(item => /#[\w-]*,?[\s]+/gim.test(item)),
   R.head)
 
+
+
 export default function markdownTags(input) {
   if (!input) return;
   const md = tagsParagraph(input);
-  return { md, tags: md.split(', ') };
+  return { md, tags: R.map(R.tail, R.split(/,?[\s]+/gim, md)) };
 };

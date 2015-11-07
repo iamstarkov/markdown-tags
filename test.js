@@ -1,4 +1,4 @@
-import { equal } from 'assert';
+import { deepEqual } from 'assert';
 import markdownTags from './index';
 
 const input = `
@@ -13,10 +13,16 @@ Params
 Des*cript*ion text`;
 
 it('should markdownTags tags', () =>
-  equal(markdownTags(input).tags, ['nodejs', 'markdown']));
+  deepEqual(markdownTags(input).tags, ['nodejs', 'markdown', 'qwe-asd']));
+
+it('should markdownTags tags with other data', () =>
+  deepEqual(markdownTags('#yo #there').tags, ['yo', 'there']));
+
+it('should markdownTags tags with single tag', () =>
+  deepEqual(markdownTags('#yo').tags, ['yo']));
 
 it('should markdownTags md', () =>
-  equal(markdownTags(input).md, '#nodejs, #markdown'));
+  deepEqual(markdownTags(input).md, '#nodejs, #markdown, #qwe-asd'));
 
 it('should markdownTags invalid input', () =>
-  equal(markdownTags(), undefined));
+  deepEqual(markdownTags(), undefined));
