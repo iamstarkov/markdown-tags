@@ -6,18 +6,19 @@ const input = `
 
 _November 5, 2015_
 
-#nodejs, #markdown
+#nodejs, #markdown, #qwe-asd
 
-Description text`;
+Params
+
+Des*cript*ion text`;
+
+const yo = process(input);
 
 it('should markdownTags tags', () =>
   equal(markdownTags(input).tags, ['nodejs', 'markdown']));
 
 it('should markdownTags md', () =>
-  equal(markdownTags(input, text => `YO ${text}`).md, 'YO #nodejs, #markdown'));
-
-it('should markdownTags md', () =>
-  equal(markdownTags(input, text => `YO ${text}`).html, '<p>YO #nodejs, #markdown</p>'));
+  equal(markdownTags(input).md, '#nodejs, #markdown'));
 
 it('should markdownTags invalid input', () =>
   equal(markdownTags(), undefined));
