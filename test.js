@@ -21,6 +21,12 @@ it('should markdownTags tags with other data', () =>
 it('should markdownTags tags with single tag', () =>
   deepEqual(markdownTags('#yo').tags, ['yo']));
 
+it('should markdownTags tags with monstreuos tag', () =>
+  deepEqual(markdownTags('#yo, #asd     #q').tags, ['yo', 'asd', 'q']));
+
+it('should markdownTags tags with commas tag', () =>
+  deepEqual(markdownTags('#yo, #a,,,sd     #q').tags, ['yo', 'a,,,sd', 'q']));
+
 it('should markdownTags md', () =>
   deepEqual(markdownTags(input).md, '#nodejs, #markdown, #qwe-asd'));
 
