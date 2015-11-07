@@ -12,8 +12,6 @@ Params
 
 Des*cript*ion text`;
 
-const yo = process(input);
-
 it('should markdownTags tags', () =>
   equal(markdownTags(input).tags, ['nodejs', 'markdown']));
 
