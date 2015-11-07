@@ -1,6 +1,5 @@
 import mdast from 'mdast';
 import R from 'ramda';
-import html = require('mdast-html');
 
 const tagsParagraph = R.pipe(
   item => mdast().parse(item),
