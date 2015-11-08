@@ -16,28 +16,48 @@
 ```js
 import markdownTags from 'markdown-tags';
 
-markdownTags('unicorns'); // unicorns
+const input = `
+# Title
+
+_November 5, 2015_
+
+#nodejs, #markdown, #qwe-asd
+
+Params
+
+Des*cript*ion text`;
+
+markdownTags(input).tags; // ['nodejs', 'markdown', 'qwe-asd']
+markdownTags(input).md;   // '#nodejs, #markdown, #qwe-asd'
+markdownTags();           // undefined ¯\_(ツ)_/¯
 ```
 
 ## API
 
-### markdownTags(input, [options])
+### markdownTags(input)
 
 #### input
 
 *Required*  
 Type: `String`
 
-Lorem ipsum.
+Markdown string.
 
-#### options
+## Related
 
-##### foo
+* [article-data][article-data] — extract data from your markdown article
+* [get-md-title][get-md-title] — get title from markdown article
+* [get-md-date][get-md-date] — get date from markdown article
+* [get-md-desc][get-md-desc] — get description from markdown article
+* [get-md-image][get-md-image] — get image from markdown article
+* [get-md-content][get-md-content] — get content from markdown article
 
-Type: `Boolean`  
-Default: `false`
-
-Lorem ipsum.
+[article-data]: https://github.com/iamstarkov/article-data
+[get-md-title]: https://github.com/iamstarkov/get-md-title
+[get-md-date]: https://github.com/iamstarkov/get-md-date
+[get-md-desc]: https://github.com/iamstarkov/get-md-desc
+[get-md-image]: https://github.com/iamstarkov/get-md-image
+[get-md-content]: https://github.com/iamstarkov/get-md-content
 
 ## License
 

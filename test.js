@@ -15,6 +15,9 @@ Des*cript*ion text`;
 it('should markdownTags tags', () =>
   deepEqual(markdownTags(input).tags, ['nodejs', 'markdown', 'qwe-asd']));
 
+it('should markdownTags md', () =>
+  deepEqual(markdownTags(input).md, '#nodejs, #markdown, #qwe-asd'));
+
 it('should markdownTags tags with other data', () =>
   deepEqual(markdownTags('#yo #there').tags, ['yo', 'there']));
 
@@ -26,9 +29,6 @@ it('should markdownTags tags with monstreuos tag', () =>
 
 it('should markdownTags tags with commas tag', () =>
   deepEqual(markdownTags('#yo, #a,,,sd     #q').tags, ['yo', 'a,,,sd', 'q']));
-
-it('should markdownTags md', () =>
-  deepEqual(markdownTags(input).md, '#nodejs, #markdown, #qwe-asd'));
 
 it('should markdownTags invalid input', () =>
   deepEqual(markdownTags(), undefined));
