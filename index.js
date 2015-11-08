@@ -1,20 +1,24 @@
 import mdast from 'mdast';
-import R from 'ramda';
+import { pipe, prop, filter, propEq, map, head, split, tail } from 'ramda';
 
-const tagsParagraph = R.pipe(
+const paragraph = pipe(
   item => mdast().parse(item),
-  R.prop('children'),
-  R.filter(R.propEq('type', 'paragraph')),
-  R.map(R.prop('children')),
-  R.filter(item => R.equals(1, R.length(item))),
-  R.map(R.head),
-  R.filter(R.propEq('type', 'text')),
-  R.map(R.prop('value')),
-  R.filter(item => /#[\w-]*,?[\s]*/gim.test(item)),
-  R.head)
+  prop('children'),
+  filter(propEq('type', 'paragraph')),
+  map(prop('children')),
+  filter(item => item.length === 1),
+  map(head),
+  filter(propEq('type', 'text')),
+  map(prop('value')),
+  filter(item => /#[\w-]*,?[\s]*/gim.test(item)),
+  head)
+
+const tags = pipe(
+  split(/,?[\s]+/gim),
+  map(tail));
 
 export default function markdownTags(input) {
   if (!input) return;
-  const md = tagsParagraph(input);
-  return { md, tags: R.map(R.tail, R.split(/,?[\s]+/gim, md)) };
+  const md = paragraph(input);
+  return { md, tags: tags(md) };
 };
