@@ -6,11 +6,7 @@ const input = `
 
 _November 5, 2015_
 
-#nodejs, #markdown, #qwe-asd
-
-Params
-
-Des*cript*ion text`;
+#nodejs, #markdown, #qwe-asd`;
 
 it('should markdownTags tags', () =>
   deepEqual(markdownTags(input).tags, ['nodejs', 'markdown', 'qwe-asd']));
